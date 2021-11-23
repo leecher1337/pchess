@@ -47,6 +47,7 @@ Tested on:
  * Plain Windows XP 32bit.
  * windows 7 64bit with NTVDMx64 (https://github.com/leecher1337/ntvdmx64/)
    CCPU Free Build  (compiled with autobuild-ccpu-fre.cmd)
+ * Windows 11 64bit with NTVDMx64
  
 So it should theoretically work on all Windows Versions
 

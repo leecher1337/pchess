@@ -58,7 +58,8 @@ static BOOL PatchFile(char *pszFile)
 {
 	HANDLE hFile;
 	BOOL bRet=FALSE;
-	BYTE Sig[] = {0x50, 0x6A, 0x00, 0x68, 0x99, 0x08, 0x00, 0x99, 0x6A, 0x01};
+	BYTE Sig[]   = {0x50, 0x6A, 0x00, 0x68, 0x99, 0x08, 0x00, 0x99, 0x6A, 0x01};
+	BYTE Sig98[] = {0x57, 0x68, 0x99, 0x08, 0x00, 0x99, 0x6A, 0x01, 0x57, 0x57};
 	PBYTE lpSig, lpMem;
 
 	printf ("Checking %s....", pszFile);
@@ -74,6 +75,7 @@ static BOOL PatchFile(char *pszFile)
 		{
 			if (lpMem = MapViewOfFile (hMap, FILE_MAP_ALL_ACCESS, 0, 0, 0))
 			{
+				// PowerChess 
 				if (lpSig = Match(lpMem, dwSize, Sig, sizeof(Sig), 1))
 				{
 					if (lpSig[4] == 0x00 && lpSig[7] == 0x08)
@@ -86,6 +88,21 @@ static BOOL PatchFile(char *pszFile)
 					}
 					bRet = TRUE;
 				}
+				else
+				// PowerChess 98
+				if (lpSig = Match(lpMem, dwSize, Sig98, sizeof(Sig98), 1))
+				{
+					if (lpSig[2] == 0x00 && lpSig[5] == 0x08)
+						print_ok("Already patched\n");
+					else
+					{
+						lpSig[2] = 0x00;
+						lpSig[5] = 0x08;
+						print_ok("Patch applied\n");
+					}
+					bRet = TRUE;
+				}
+
 				else
 					ShowError("Cannot find signature in file");
 
