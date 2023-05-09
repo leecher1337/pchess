@@ -5,7 +5,7 @@ https://sourceforge.net/p/dxwnd/discussion/general/thread/98dd46dfc6/?page=0
 
 Some people were trying to run an old Chess Game by Sierra called
 PowerChess. It can be found at:
-https://www.old-games.ru/game/download/7740.html
+https://www.old-games.ru/game/download/8452.html
 
 PowerChess uses 2 DOS Chess-Engines that are communicating via STDIN/STDOUT
 Pipes with the graphical frontend. On newer Windows Versions, this 
